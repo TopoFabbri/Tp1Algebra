@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -25,32 +27,25 @@ public class Quadrilateral : MonoBehaviour
         {
             intersection[i]=Vector2.zero;
         }
-        if    (lineLine(spawnPoints[0].transform, endPoints[0].transform, spawnPoints[1].transform, endPoints[1].transform,0)
-            || lineLine(spawnPoints[0].transform, endPoints[0].transform, spawnPoints[2].transform, endPoints[2].transform,1)
-            || lineLine(spawnPoints[0].transform, endPoints[0].transform, spawnPoints[3].transform, endPoints[3].transform,2))
-        {                                                                                                              
-            Debug.Log("1");                                                                                            
-        }                                                                                                              
-        if    (lineLine(spawnPoints[1].transform, endPoints[1].transform, spawnPoints[0].transform, endPoints[0].transform,0)
-            || lineLine(spawnPoints[1].transform, endPoints[1].transform, spawnPoints[2].transform, endPoints[2].transform,3)
-            || lineLine(spawnPoints[1].transform, endPoints[1].transform, spawnPoints[3].transform, endPoints[3].transform,4))
-        {                                                                                                                
-            Debug.Log("2");                                                                                              
-        }                                                                                                                
-        if    (lineLine(spawnPoints[2].transform, endPoints[2].transform, spawnPoints[1].transform, endPoints[1].transform,3)
-            || lineLine(spawnPoints[2].transform, endPoints[2].transform, spawnPoints[0].transform, endPoints[0].transform,1)
-            || lineLine(spawnPoints[2].transform, endPoints[2].transform, spawnPoints[3].transform, endPoints[3].transform,5))
-        {                                                                                                               
-            Debug.Log("3");                                                                                             
-        }                                                                                                               
-        if    (lineLine(spawnPoints[3].transform, endPoints[3].transform, spawnPoints[1].transform, endPoints[1].transform,4)
-            || lineLine(spawnPoints[3].transform, endPoints[3].transform, spawnPoints[2].transform, endPoints[2].transform,5)
-            || lineLine(spawnPoints[3].transform, endPoints[3].transform, spawnPoints[0].transform, endPoints[0].transform,2))
-        {
-            Debug.Log("4");
-        }
+        lineLine(spawnPoints[0].transform, endPoints[0].transform, spawnPoints[1].transform, endPoints[1].transform,0)        ;
+             lineLine(spawnPoints[0].transform, endPoints[0].transform, spawnPoints[2].transform, endPoints[2].transform,1)   ;
+        lineLine(spawnPoints[0].transform, endPoints[0].transform, spawnPoints[3].transform, endPoints[3].transform, 2);
+                                                                                                                  
+        lineLine(spawnPoints[1].transform, endPoints[1].transform, spawnPoints[0].transform, endPoints[0].transform,0)   ;
+        lineLine(spawnPoints[1].transform, endPoints[1].transform, spawnPoints[2].transform, endPoints[2].transform,3)   ;
+        lineLine(spawnPoints[1].transform, endPoints[1].transform, spawnPoints[3].transform, endPoints[3].transform,4) ;
+                                                                                                                     
+     lineLine(spawnPoints[2].transform, endPoints[2].transform, spawnPoints[1].transform, endPoints[1].transform,3)      ;
+      lineLine(spawnPoints[2].transform, endPoints[2].transform, spawnPoints[0].transform, endPoints[0].transform,1)     ;
+      lineLine(spawnPoints[2].transform, endPoints[2].transform, spawnPoints[3].transform, endPoints[3].transform,5) ;
+                                                                                                               
+                                                                                                                    
+    lineLine(spawnPoints[3].transform, endPoints[3].transform, spawnPoints[1].transform, endPoints[1].transform,4)   ;
+     lineLine(spawnPoints[3].transform, endPoints[3].transform, spawnPoints[2].transform, endPoints[2].transform,5)  ;
+        lineLine(spawnPoints[3].transform, endPoints[3].transform, spawnPoints[0].transform, endPoints[0].transform, 2);
 
-
+        CheckSquare();
+        Square();
     }
 
     private void OnDrawGizmos()
@@ -89,16 +84,31 @@ public class Quadrilateral : MonoBehaviour
             return false;
     }
 
+    void Square()
+    {
+    Debug.Log(((intersection[1].x * intersection[2].x) + (intersection[1].y * intersection[2].y)) /
+            (intersection[1].magnitude - intersection[2].magnitude) );
+
+    }
     void CheckSquare()
     {
         Vector2[] corner = new Vector2[4];
-        for (int i = 0; i < corner.Length; i++)
+        int collisionCounter=0;
+        for (int i = 0; i < intersection.Length; i++)
         {
-            for (int j = 0; j < intersection.Length; j++)
+            if (intersection[i]!=Vector2.zero)
             {
-                
+                collisionCounter++;
             }
 
         }
+
+        if (collisionCounter == 4)
+        {
+           Debug.Log("Hay 4 collisiones");
+
+          
+        }
+       
     }
 }
