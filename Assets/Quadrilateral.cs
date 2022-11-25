@@ -71,9 +71,9 @@ public class Quadrilateral : MonoBehaviour
         line3.endPoint = endPoints[2].transform.position;
         line4.endPoint = endPoints[3].transform.position;
 
-        line1.colCounter =0;
-        line2.colCounter =0;
-        line3.colCounter =0;
+        line1.colCounter = 0;
+        line2.colCounter = 0;
+        line3.colCounter = 0;
         line4.colCounter = 0;
         for (int i = 0; i < intersection.Length; i++)
         {
@@ -92,10 +92,10 @@ public class Quadrilateral : MonoBehaviour
         colLineLine(ref line4, line3, 5);
         colLineLine(ref line4, line1, 2);
 
-       point[0]= checkColl(ref line1, line2, line3, line4);
-       point[1]= checkColl(ref line2, line1, line3, line4);
-       point[2]= checkColl(ref line3, line2, line1, line4);
-       point[3]= checkColl(ref line4, line2, line3, line1);
+        point[0] = checkColl(ref line1, line2, line3, line4);
+        point[1] = checkColl(ref line2, line1, line3, line4);
+        point[2] = checkColl(ref line3, line2, line1, line4);
+        point[3] = checkColl(ref line4, line2, line3, line1);
 
 
     }
@@ -104,22 +104,22 @@ public class Quadrilateral : MonoBehaviour
     {
 
     }
-  //lineLine(spawnPoints[0].transform, endPoints[0].transform, spawnPoints[1].transform, endPoints[1].transform,0);
-        //lineLine(spawnPoints[0].transform, endPoints[0].transform, spawnPoints[2].transform, endPoints[2].transform,1);
-        //lineLine(spawnPoints[0].transform, endPoints[0].transform, spawnPoints[3].transform, endPoints[3].transform,2);
-        //                                                                                                          
-        //lineLine(spawnPoints[1].transform, endPoints[1].transform, spawnPoints[0].transform, endPoints[0].transform,0);
-        //lineLine(spawnPoints[1].transform, endPoints[1].transform, spawnPoints[2].transform, endPoints[2].transform,3);
-        //lineLine(spawnPoints[1].transform, endPoints[1].transform, spawnPoints[3].transform, endPoints[3].transform,4);
-        //                                                                                                             
-        //lineLine(spawnPoints[2].transform, endPoints[2].transform, spawnPoints[1].transform, endPoints[1].transform,3);
-        //lineLine(spawnPoints[2].transform, endPoints[2].transform, spawnPoints[0].transform, endPoints[0].transform,1);
-        //lineLine(spawnPoints[2].transform, endPoints[2].transform, spawnPoints[3].transform, endPoints[3].transform,5);
-        //                                                                                                       
-        //                                                                                                            
-        //lineLine(spawnPoints[3].transform, endPoints[3].transform, spawnPoints[1].transform, endPoints[1].transform,4);
-        //lineLine(spawnPoints[3].transform, endPoints[3].transform, spawnPoints[2].transform, endPoints[2].transform,5);
-        //lineLine(spawnPoints[3].transform, endPoints[3].transform, spawnPoints[0].transform, endPoints[0].transform,2);
+    //lineLine(spawnPoints[0].transform, endPoints[0].transform, spawnPoints[1].transform, endPoints[1].transform,0);
+    //lineLine(spawnPoints[0].transform, endPoints[0].transform, spawnPoints[2].transform, endPoints[2].transform,1);
+    //lineLine(spawnPoints[0].transform, endPoints[0].transform, spawnPoints[3].transform, endPoints[3].transform,2);
+    //                                                                                                          
+    //lineLine(spawnPoints[1].transform, endPoints[1].transform, spawnPoints[0].transform, endPoints[0].transform,0);
+    //lineLine(spawnPoints[1].transform, endPoints[1].transform, spawnPoints[2].transform, endPoints[2].transform,3);
+    //lineLine(spawnPoints[1].transform, endPoints[1].transform, spawnPoints[3].transform, endPoints[3].transform,4);
+    //                                                                                                             
+    //lineLine(spawnPoints[2].transform, endPoints[2].transform, spawnPoints[1].transform, endPoints[1].transform,3);
+    //lineLine(spawnPoints[2].transform, endPoints[2].transform, spawnPoints[0].transform, endPoints[0].transform,1);
+    //lineLine(spawnPoints[2].transform, endPoints[2].transform, spawnPoints[3].transform, endPoints[3].transform,5);
+    //                                                                                                       
+    //                                                                                                            
+    //lineLine(spawnPoints[3].transform, endPoints[3].transform, spawnPoints[1].transform, endPoints[1].transform,4);
+    //lineLine(spawnPoints[3].transform, endPoints[3].transform, spawnPoints[2].transform, endPoints[2].transform,5);
+    //lineLine(spawnPoints[3].transform, endPoints[3].transform, spawnPoints[0].transform, endPoints[0].transform,2);
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -135,9 +135,9 @@ public class Quadrilateral : MonoBehaviour
         Gizmos.color = Color.cyan;
 
 
-        
+
         Gizmos.color = Color.black;
-        if (point[0] >-1)
+        if (point[0] > -1)
         {
             if (intersection[point[0]] != Vector2.zero)
             {
@@ -162,7 +162,7 @@ public class Quadrilateral : MonoBehaviour
         }
 
         Gizmos.color = Color.white;
-        if (point[1] >-1)
+        if (point[1] > -1)
         {
             if (intersection[point[1]] != Vector2.zero)
             {
@@ -184,16 +184,16 @@ public class Quadrilateral : MonoBehaviour
                         Gizmos.DrawLine(intersection[point[1]], intersection[point[3]]);
                 }
             }
-        } 
-            Gizmos.color= Color.magenta;
-        if (point[2] >-1)
+        }
+        Gizmos.color = Color.magenta;
+        if (point[2] > -1)
         {
             if (intersection[point[2]] != Vector2.zero)
             {
                 if (point[0] > -1)
                 {
                     if (intersection[point[0]] != Vector2.zero)
-                    
+
                         Gizmos.DrawLine(intersection[point[2]], intersection[point[0]]);
                 }
 
@@ -211,33 +211,33 @@ public class Quadrilateral : MonoBehaviour
             }
         }
         Gizmos.color = Color.red;
-        
-        if (point[3] >-1 )
+
+        if (point[3] > -1)
         {
             if (intersection[point[3]] != Vector2.zero)
             {
-                
-            if (point[0] > -1)
-            {
-                if (intersection[point[0]] != Vector2.zero)
+
+                if (point[0] > -1)
+                {
+                    if (intersection[point[0]] != Vector2.zero)
                         Gizmos.DrawLine(intersection[point[3]], intersection[point[0]]);
-                
-            } 
-            if (point[1] > -1)
-            {
-                if (intersection[point[1]] != Vector2.zero)
+
+                }
+                if (point[1] > -1)
+                {
+                    if (intersection[point[1]] != Vector2.zero)
                         Gizmos.DrawLine(intersection[point[3]], intersection[point[1]]);
-            } 
-            if (point[2] > -1)
-            {
-                if (intersection[point[2]] != Vector2.zero)
+                }
+                if (point[2] > -1)
+                {
+                    if (intersection[point[2]] != Vector2.zero)
                         Gizmos.DrawLine(intersection[point[3]], intersection[point[2]]);
-            }
+                }
             }
 
         }
-       
-     
+
+
         Gizmos.color = Color.cyan;
         Gizmos.DrawLine(spawnPoints[3].transform.position, endPoints[3].transform.position);
 
@@ -488,65 +488,65 @@ public class Quadrilateral : MonoBehaviour
             }
 
         }
-            return -1;
+        return -1;
 
     }
 
     float AnglePromedio()
-        {
-            return 0;
-        }
-
-        float Angle(GameObject start1, GameObject end1, GameObject start2, GameObject end2)
-        {
-
-
-
-            Vector2 prueba = end1.transform.position - start1.transform.position;
-            Debug.Log(prueba);
-            Vector2 prueba2 = end2.transform.position - start2.transform.position;
-            Debug.Log(MathF.Acos(Vector2.Dot(prueba.normalized, prueba2.normalized)) * 180 / MathF.PI);
-
-
-            //  Debug.Log(prueba.SqrMagnitude());
-
-
-
-            return MathF.Acos(Vector2.Dot(prueba.normalized, prueba2.normalized)) * 180 / MathF.PI;
-        }
-
-        void isQuadrilateral()
-        {
-            float angle1 = Angle(spawnPoints[0], endPoints[0], spawnPoints[1], endPoints[1]);
-            float angle2 = Angle(spawnPoints[1], endPoints[1], spawnPoints[2], endPoints[2]);
-            float angle3 = Angle(spawnPoints[2], endPoints[2], spawnPoints[3], endPoints[3]);
-            float angle4 = Angle(spawnPoints[3], endPoints[3], spawnPoints[0], endPoints[0]);
-
-            Debug.Log(angle1 + angle2 + angle3 + angle4);
-        }
-
-        void CheckSquare()
-        {
-            Vector2[] corner = new Vector2[4];
-            int collisionCounter = 0;
-            for (int i = 0; i < intersection.Length; i++)
-            {
-                if (intersection[i] != Vector2.zero)
-                {
-                    collisionCounter++;
-                }
-
-            }
-
-            if (collisionCounter == 4)
-            {
-                Debug.Log("Hay 4 collisiones");
-
-
-            }
-
-        }
+    {
+        return 0;
     }
 
-    
+    float Angle(GameObject start1, GameObject end1, GameObject start2, GameObject end2)
+    {
+
+
+
+        Vector2 prueba = end1.transform.position - start1.transform.position;
+        Debug.Log(prueba);
+        Vector2 prueba2 = end2.transform.position - start2.transform.position;
+        Debug.Log(MathF.Acos(Vector2.Dot(prueba.normalized, prueba2.normalized)) * 180 / MathF.PI);
+
+
+        //  Debug.Log(prueba.SqrMagnitude());
+
+
+
+        return MathF.Acos(Vector2.Dot(prueba.normalized, prueba2.normalized)) * 180 / MathF.PI;
+    }
+
+    void isQuadrilateral()
+    {
+        float angle1 = Angle(spawnPoints[0], endPoints[0], spawnPoints[1], endPoints[1]);
+        float angle2 = Angle(spawnPoints[1], endPoints[1], spawnPoints[2], endPoints[2]);
+        float angle3 = Angle(spawnPoints[2], endPoints[2], spawnPoints[3], endPoints[3]);
+        float angle4 = Angle(spawnPoints[3], endPoints[3], spawnPoints[0], endPoints[0]);
+
+        Debug.Log(angle1 + angle2 + angle3 + angle4);
+    }
+
+    void CheckSquare()
+    {
+        Vector2[] corner = new Vector2[4];
+        int collisionCounter = 0;
+        for (int i = 0; i < intersection.Length; i++)
+        {
+            if (intersection[i] != Vector2.zero)
+            {
+                collisionCounter++;
+            }
+
+        }
+
+        if (collisionCounter == 4)
+        {
+            Debug.Log("Hay 4 collisiones");
+
+
+        }
+
+    }
+}
+
+
 
