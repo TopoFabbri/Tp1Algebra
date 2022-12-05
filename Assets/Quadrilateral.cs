@@ -76,7 +76,6 @@ public class Quadrilateral : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(spawnPoints[3].transform.position, endPoints[3].transform.position);
 
-
         line1.startPoint = spawnPoints[0].transform.position;
         line2.startPoint = spawnPoints[1].transform.position;
         line3.startPoint = spawnPoints[2].transform.position;
