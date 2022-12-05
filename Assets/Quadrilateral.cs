@@ -98,7 +98,7 @@ public class Quadrilateral : MonoBehaviour
         ColLineLine(ref line1, line2, 0);
         ColLineLine(ref line1, line3, 1);
         ColLineLine(ref line1, line4, 2);
-        ColLineLine(ref line2, line1, 0);
+        ColLineLine(ref line2, line1, 1);
         ColLineLine(ref line2, line3, 3);
         ColLineLine(ref line2, line4, 4);
         ColLineLine(ref line3, line2, 3);
@@ -142,6 +142,7 @@ public class Quadrilateral : MonoBehaviour
         {
             float intersectionX = line1.startPoint.x + (uA * (line1.endPoint.x - line1.startPoint.x));
             float intersectionY = line1.startPoint.y + (uA * (line1.endPoint.y - line1.startPoint.y));
+
             intersection[i] = new Vector2(intersectionX, intersectionY);
 
             if (line1.collId1 == 0)
@@ -165,135 +166,131 @@ public class Quadrilateral : MonoBehaviour
         int counter = 0;
         int idNocollision = -1;
 
-        
+        if (line.id == line2.collId1 || line.id == line2.collId2 || line.id == line2.collId3)
+            counter++;
+        else
+            idNocollision = line2.id;
+
+        if (line.id == line3.collId1 || line.id == line3.collId2 || line.id == line3.collId3)
+            counter++;
+        else
+            idNocollision = line3.id;
+
+        if (line.id == line4.collId1 || line.id == line4.collId2 || line.id == line4.collId3)
+            counter++;
+        else
+            idNocollision = line4.id;
+
+        if (counter > 2)
+            return -1;
+
+        if (idNocollision == line2.id)
         {
-            if (line.id == line2.collId1 || line.id == line2.collId2 || line.id == line2.collId3)
-                counter++;
-            else
-                idNocollision = line2.id;
+            if (line.colNum1 == line2.colNum1)
+                return line.colNum1;
+            else if (line.colNum2 == line2.colNum1)
+                return line.colNum2;
+            else if (line.colNum3 == line2.colNum1)
+                return line.colNum3;
 
-            if (line.id == line3.collId1 || line.id == line3.collId2 || line.id == line3.collId3)
-                counter++;
-            else
-                idNocollision = line3.id;
+            if (line.colNum1 == line2.colNum2)
+                return line.colNum1;
+            else if (line.colNum2 == line2.colNum2)
+                return line.colNum2;
+            else if (line.colNum3 == line2.colNum2)
+                return line.colNum3;
 
-            if (line.id == line4.collId1 || line.id == line4.collId2 || line.id == line4.collId3)
-                counter++;
-            else
-                idNocollision = line4.id;
+            if (line.colNum1 == line2.colNum3)
+                return line.colNum1;
+            else if (line.colNum2 == line2.colNum3)
+                return line.colNum2;
+            else if (line.colNum3 == line2.colNum3)
+                return line.colNum3;
+        }
 
-            if (counter > 2)
-                return -1;
+        if (idNocollision == line3.id)
+        {
 
-
-            if (idNocollision == line2.id)
+            if (line.colNum1 == line3.colNum1)
             {
-                if (line.colNum1 == line2.colNum1)
-                    return line.colNum1;
-                else if (line.colNum2 == line2.colNum1)
-                    return line.colNum2;
-                else if (line.colNum3 == line2.colNum1)
-                    return line.colNum3;
-
-                if (line.colNum1 == line2.colNum2)
-                    return line.colNum1;
-                else if (line.colNum2 == line2.colNum2)
-                    return line.colNum2;
-                else if (line.colNum3 == line2.colNum2)
-                    return line.colNum3;
-
-                if (line.colNum1 == line2.colNum3)
-                    return line.colNum1;
-                else if (line.colNum2 == line2.colNum3)
-                    return line.colNum2;
-                else if (line.colNum3 == line2.colNum3)
-                    return line.colNum3;
+                return line.colNum1;
+            }
+            else if (line.colNum2 == line3.colNum1)
+            {
+                return line.colNum2;
+            }
+            else if (line.colNum3 == line3.colNum1)
+            {
+                return line.colNum3;
             }
 
-            if (idNocollision == line3.id)
+            if (line.colNum1 == line3.colNum2)
             {
-
-                if (line.colNum1 == line3.colNum1)
-                {
-                    return line.colNum1;
-                }
-                else if (line.colNum2 == line3.colNum1)
-                {
-                    return line.colNum2;
-                }
-                else if (line.colNum3 == line3.colNum1)
-                {
-                    return line.colNum3;
-                }
-
-                if (line.colNum1 == line3.colNum2)
-                {
-                    return line.colNum1;
-                }
-                else if (line.colNum2 == line3.colNum2)
-                {
-                    return line.colNum2;
-                }
-                else if (line.colNum3 == line3.colNum2)
-                {
-                    return line.colNum3;
-                }
-
-                if (line.colNum1 == line3.colNum3)
-                {
-                    return line.colNum1;
-                }
-                else if (line.colNum2 == line3.colNum3)
-                {
-                    return line.colNum2;
-                }
-                else if (line.colNum3 == line3.colNum3)
-                {
-                    return line.colNum3;
-                }
-
+                return line.colNum1;
+            }
+            else if (line.colNum2 == line3.colNum2)
+            {
+                return line.colNum2;
+            }
+            else if (line.colNum3 == line3.colNum2)
+            {
+                return line.colNum3;
             }
 
-            if (idNocollision == line4.id)
+            if (line.colNum1 == line3.colNum3)
             {
-                if (line.colNum1 == line4.colNum1)
-                {
-                    return line.colNum1;
-                }
-                else if (line.colNum2 == line4.colNum1)
-                {
-                    return line.colNum2;
-                }
-                else if (line.colNum3 == line4.colNum1)
-                {
-                    return line.colNum3;
-                }
+                return line.colNum1;
+            }
+            else if (line.colNum2 == line3.colNum3)
+            {
+                return line.colNum2;
+            }
+            else if (line.colNum3 == line3.colNum3)
+            {
+                return line.colNum3;
+            }
 
-                if (line.colNum1 == line4.colNum2)
-                {
-                    return line.colNum1;
-                }
-                else if (line.colNum2 == line4.colNum2)
-                {
-                    return line.colNum2;
-                }
-                else if (line.colNum3 == line4.colNum2)
-                {
-                    return line.colNum3;
-                }
+        }
 
-                if (line.colNum1 == line4.colNum3)
-                {
-                    return line.colNum1;
-                }
-                else if (line.colNum2 == line4.colNum3)
-                {
-                    return line.colNum2;
-                }
-                else if (line.colNum3 == line4.colNum3)
-                {
-                    return line.colNum3;
-                }
+        if (idNocollision == line4.id)
+        {
+            if (line.colNum1 == line4.colNum1)
+            {
+                return line.colNum1;
+            }
+            else if (line.colNum2 == line4.colNum1)
+            {
+                return line.colNum2;
+            }
+            else if (line.colNum3 == line4.colNum1)
+            {
+                return line.colNum3;
+            }
+
+            if (line.colNum1 == line4.colNum2)
+            {
+                return line.colNum1;
+            }
+            else if (line.colNum2 == line4.colNum2)
+            {
+                return line.colNum2;
+            }
+            else if (line.colNum3 == line4.colNum2)
+            {
+                return line.colNum3;
+            }
+
+            if (line.colNum1 == line4.colNum3)
+            {
+                return line.colNum1;
+            }
+            else if (line.colNum2 == line4.colNum3)
+            {
+                return line.colNum2;
+            }
+            else if (line.colNum3 == line4.colNum3)
+            {
+                return line.colNum3;
             }
         }
 
@@ -372,144 +369,5 @@ public class Quadrilateral : MonoBehaviour
                 }
             }
         }
-
-        /*Gizmos.color = Color.black;
-        if (point[0] > -1)
-        {
-            if (intersection[point[0]] != Vector2.zero)
-            {
-                if (point[1] > -1)
-                {
-                    if (intersection[point[1]] != Vector2.zero)
-                        Gizmos.DrawLine(intersection[point[0]], intersection[point[1]]);
-
-                    quadArea = GetTriangleArea(intersection[point[0]], intersection[point[1]], intersection[point[2]]);
-                    quadArea += GetTriangleArea(intersection[point[0]], intersection[point[1]], intersection[point[3]]);
-                }
-
-                if (point[2] > -1)
-                {
-                    if (intersection[point[2]] != Vector2.zero)
-                        Gizmos.DrawLine(intersection[point[0]], intersection[point[2]]);
-
-                    quadArea = GetTriangleArea(intersection[point[0]], intersection[point[2]], intersection[point[1]]);
-                    quadArea += GetTriangleArea(intersection[point[0]], intersection[point[2]], intersection[point[3]]);
-                }
-
-                if (point[3] > -1)
-                {
-                    if (intersection[point[3]] != Vector2.zero)
-                        Gizmos.DrawLine(intersection[point[0]], intersection[point[3]]);
-
-                    quadArea = GetTriangleArea(intersection[point[0]], intersection[point[3]], intersection[point[1]]);
-                    quadArea += GetTriangleArea(intersection[point[0]], intersection[point[3]], intersection[point[2]]);
-                }
-            }
-        }
-
-        Gizmos.color = Color.white;
-        if (point[1] > -1)
-        {
-            if (intersection[point[1]] != Vector2.zero)
-            {
-                if (point[0] > -1)
-                {
-                    if (intersection[point[0]] != Vector2.zero)
-                        Gizmos.DrawLine(intersection[point[1]], intersection[point[0]]);
-
-                    quadArea = GetTriangleArea(intersection[point[1]], intersection[point[0]], intersection[point[2]]);
-                    quadArea += GetTriangleArea(intersection[point[1]], intersection[point[0]], intersection[point[3]]);
-                }
-
-                if (point[2] > -1)
-                {
-                    if (intersection[point[2]] != Vector2.zero)
-                        Gizmos.DrawLine(intersection[point[1]], intersection[point[2]]);
-
-                    quadArea = GetTriangleArea(intersection[point[1]], intersection[point[2]], intersection[point[0]]);
-                    quadArea += GetTriangleArea(intersection[point[1]], intersection[point[2]], intersection[point[3]]);
-                }
-
-                if (point[3] > -1)
-                {
-                    if (intersection[point[3]] != Vector2.zero)
-                        Gizmos.DrawLine(intersection[point[1]], intersection[point[3]]);
-
-                    quadArea = GetTriangleArea(intersection[point[1]], intersection[point[3]], intersection[point[0]]);
-                    quadArea += GetTriangleArea(intersection[point[1]], intersection[point[3]], intersection[point[2]]);
-                }
-            }
-        }
-
-        Gizmos.color = Color.magenta;
-        if (point[2] > -1)
-        {
-            if (intersection[point[2]] != Vector2.zero)
-            {
-                if (point[0] > -1)
-                {
-                    if (intersection[point[0]] != Vector2.zero)
-
-                        Gizmos.DrawLine(intersection[point[2]], intersection[point[0]]);
-
-                    quadArea = GetTriangleArea(intersection[point[2]], intersection[point[0]], intersection[point[1]]);
-                    quadArea += GetTriangleArea(intersection[point[2]], intersection[point[0]], intersection[point[3]]);
-                }
-
-                if (point[1] > -1)
-                {
-                    if (intersection[point[1]] != Vector2.zero)
-                        Gizmos.DrawLine(intersection[point[2]], intersection[point[1]]);
-
-                    quadArea = GetTriangleArea(intersection[point[2]], intersection[point[1]], intersection[point[0]]);
-                    quadArea += GetTriangleArea(intersection[point[2]], intersection[point[1]], intersection[point[3]]);
-                }
-
-                if (point[3] > -1)
-                {
-                    if (intersection[point[3]] != Vector2.zero)
-                        Gizmos.DrawLine(intersection[point[2]], intersection[point[3]]);
-
-                    quadArea = GetTriangleArea(intersection[point[2]], intersection[point[3]], intersection[point[0]]);
-                    quadArea += GetTriangleArea(intersection[point[2]], intersection[point[3]], intersection[point[1]]);
-                }
-            }
-        }
-
-        Gizmos.color = Color.red;
-        if (point[3] > -1)
-        {
-            if (intersection[point[3]] != Vector2.zero)
-            {
-
-                if (point[0] > -1)
-                {
-                    if (intersection[point[0]] != Vector2.zero)
-                        Gizmos.DrawLine(intersection[point[3]], intersection[point[0]]);
-
-                    quadArea = GetTriangleArea(intersection[point[3]], intersection[point[0]], intersection[point[1]]);
-                    quadArea += GetTriangleArea(intersection[point[3]], intersection[point[0]], intersection[point[2]]);
-                }
-                if (point[1] > -1)
-                {
-                    if (intersection[point[1]] != Vector2.zero)
-                        Gizmos.DrawLine(intersection[point[3]], intersection[point[1]]);
-
-                    quadArea = GetTriangleArea(intersection[point[3]], intersection[point[1]], intersection[point[0]]);
-                    quadArea += GetTriangleArea(intersection[point[3]], intersection[point[1]], intersection[point[2]]);
-                }
-                if (point[2] > -1)
-                {
-                    if (intersection[point[2]] != Vector2.zero)
-                        Gizmos.DrawLine(intersection[point[3]], intersection[point[2]]);
-
-                    quadArea = GetTriangleArea(intersection[point[3]], intersection[point[2]], intersection[point[0]]);
-                    quadArea += GetTriangleArea(intersection[point[3]], intersection[point[2]], intersection[point[1]]);
-                }
-            }
-        }*/
-
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawLine(spawnPoints[3].transform.position, endPoints[3].transform.position);
     }
 }
